@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "./Header";
+import Footer from "./Footer";
 
 class NoteApp extends React.Component {
   onAddNoteHandler() {
@@ -10,6 +11,7 @@ class NoteApp extends React.Component {
     return (
       <div className="note-app">
         <Header onAddNoteHandler={this.onAddNoteHandler} />
+        <Footer />
       </div>
     );
   }
