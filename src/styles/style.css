@@ -1,3 +1,11 @@
+:root {
+  --white-color: #fff;
+  --light-green-color: #13ab67;
+  --dark-color: #3f3f42;
+  --gray-color: #f7f7f7;
+  --dark-gray-color: #999;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -5,3 +13,305 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.note-app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--gray-color);
+}
+
+.header {
+  display: flex;
+  position: sticky;
+  top: 0;
+  justify-content: space-between;
+  padding: 1rem 5%;
+  background-color: var(--white-color);
+  box-shadow: 0 4px 10px rgba(10, 10, 10, 0.1);
+  align-items: center;
+}
+
+.header__logo {
+  color: var(--light-green-color);
+  font-size: 1.5rem;
+  display: flex;
+  gap: .3rem;
+  align-items: center;
+}
+
+.header__add-note {
+  border-radius: .5rem;
+  border: none;
+  background-color: var(--light-green-color);
+  padding: .6rem .9rem;
+  color: var(--white-color);
+  display: flex;
+  gap: .3rem;
+  font-weight: 600;
+  align-items: center;
+  cursor: pointer;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem 5%;
+}
+
+.body h2 {
+  color: var(--dark-color);
+}
+
+.tab-search-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.search-note {
+  display: flex;
+}
+
+.search-note input {
+  padding: .8rem;
+  width: 100%;
+  border-radius: .5rem;
+  color: var(--dark-color);
+  border: 1px solid var(--dark-gray-color);
+}
+
+.tab-note-container {
+  display: flex;
+  align-items: center;
+}
+
+.tab-note-container label {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  border-bottom: 1px solid var(--dark-gray-color);
+  color: var(--dark-gray-color);
+  padding: .8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tab-note-container input {
+  display: none;
+}
+
+.tab-note-container input:checked + label {
+  color: var(--light-green-color);
+  border-bottom: 2px solid var(--light-green-color);
+}
+
+[class^="note-list__"] {
+  display: none;
+}
+
+.body:has(:checked:nth-of-type(1)) .note-list__home, 
+.body:has(:checked:nth-of-type(2)) .note-list__archived {
+  display: grid;
+  gap: 1rem;
+}
+
+.note-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: var(--white-color);
+  padding: 1rem;
+  overflow: hidden;
+  border-radius: .8rem;
+  box-shadow: 0 0 10px rgba(10, 10, 10, 0.1);
+}
+
+.note-item__header {
+  display: flex;
+  justify-content: space-between;
+  color: var(--dark-color);
+  align-items: center;
+}
+
+.note-item__title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.note-item__action {
+  display: flex;
+  gap: .9rem;
+}
+
+.note-item__header button {
+  border: none;
+  font-size: 1.1rem;
+  background-color: transparent;
+  cursor: pointer;
+  color: var(--dark-gray-color);
+}
+
+.note-item__body {
+  color: var(--dark-color);
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.note-item__not-found {
+  margin: auto;
+  padding: 1rem;
+  color: var(--dark-gray-color);
+}
+
+.note-item__footer {
+  display: flex;
+  margin-top: auto;
+  justify-content: end;
+  color: var(--dark-gray-color);
+  font-style: italic;
+}
+
+.add-note-modal {
+  position: fixed;
+  top: -110vh;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transition: .5s ease;
+}
+
+.add-note-modal.active {
+  top: 0;
+  opacity: 1;
+}
+
+.note-input {
+  margin-top: 4rem;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 90%;
+  max-width: 530px;
+  height: fit-content;
+}
+
+.note-input h2 {
+  display: flex;
+  justify-content: center;
+  padding: .9rem;
+  color: var(--dark-color);
+  border-bottom: 1px solid var(--dark-gray-color);
+  width: 100%;
+}
+
+.note-input p {
+  color: var(--dark-gray-color);
+  margin-left: auto;
+}
+
+.note-input input,
+.note-input textarea {
+  padding: .8rem;
+  border: 1px solid var(--dark-gray-color);
+  border-radius: 4px;
+}
+
+.note-input textarea {
+  height: 10rem;
+}
+
+.add-note-modal__action {
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-note-modal__confirm {
+  padding: 10px;
+  background-color: var(--light-green-color);
+  color: white;
+  border: none;
+  border-radius: .4rem;
+  cursor: pointer;
+  width: 90px;
+  font-weight: 600;
+}
+
+.add-note-modal__cancel {
+  padding: 10px;
+  background-color: var(--white-color);
+  color: var(--light-green-color);
+  border: 1px solid var(--light-green-color);
+  border-radius: .4rem;
+  cursor: pointer;
+  width: 90px;
+  font-weight: 600;
+}
+
+.footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 5%;
+  background-color: var(--white-color);
+  border-bottom: 1px solid var(--dark-gray-color);
+  box-shadow: 0 -4px 10px rgba(10, 10, 10, 0.1);
+  color: var(--dark-color);
+}
+
+@media screen and (min-width: 700px) {
+  .body:has(:checked:nth-of-type(1)) .note-list__home, 
+  .body:has(:checked:nth-of-type(2)) .note-list__archived {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .body:has(:checked:nth-of-type(1)) .note-list__home.empty, 
+  .body:has(:checked:nth-of-type(2)) .note-list__archived.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .tab-search-wrapper {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: end;
+  }
+
+  .tab-note-container,
+  .search-note {
+    width: 256px;
+  }
+
+  .search-note input {
+    padding: .6rem;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  html {
+    font-size: 105%;
+  }
+
+  .body:has(:checked:nth-of-type(1)) .note-list__home, 
+  .body:has(:checked:nth-of-type(2)) .note-list__archived {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .body:has(:checked:nth-of-type(1)) .note-list__home, 
+  .body:has(:checked:nth-of-type(2)) .note-list__archived {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
